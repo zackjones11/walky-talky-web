@@ -63,6 +63,10 @@ const App: React.FC = () => {
     await peerConnection.setRemoteDescription(JSON.parse(body));
   };
 
+  const handleIceCandidate = async (body: string) => {
+    await peerConnection.addIceCandidate(JSON.parse(body));
+  };
+
   React.useEffect(() => {
     if (!lastMessage) {
       return;
@@ -88,6 +92,10 @@ const App: React.FC = () => {
 
       case "ANSWER":
         handleAnswer(body);
+        break;
+
+      case "ICE_CANDIDATE":
+        handleIceCandidate(body);
         break;
     }
   }, [lastMessage]);
