@@ -27,6 +27,21 @@ const App: React.FC = () => {
     setShouldStartChat(true);
   };
 
+  const getUserMedia = async () => {
+    try {
+      if (!localStream) {
+        const mediaStream = await navigator.mediaDevices.getUserMedia({
+          video: false,
+          audio: true,
+        });
+
+        return mediaStream;
+      }
+    } catch (error) {
+      console.error("getUserMedia Error: ", error);
+    }
+  };
+
   const handleOffer = async (body: string) => {
     await peerConnection.setRemoteDescription(JSON.parse(body));
     const mediaStream = await getUserMedia();
@@ -44,19 +59,8 @@ const App: React.FC = () => {
     });
   };
 
-  const getUserMedia = async () => {
-    try {
-      if (!localStream) {
-        const mediaStream = await navigator.mediaDevices.getUserMedia({
-          video: false,
-          audio: true,
-        });
-
-        return mediaStream;
-      }
-    } catch (error) {
-      console.error("getUserMedia Error: ", error);
-    }
+  const handleAnswer = async (body: string) => {
+    await peerConnection.setRemoteDescription(JSON.parse(body));
   };
 
   React.useEffect(() => {
@@ -80,6 +84,10 @@ const App: React.FC = () => {
 
       case "OFFER":
         handleOffer(body);
+        break;
+
+      case "ANSWER":
+        handleAnswer(body);
         break;
     }
   }, [lastMessage]);
