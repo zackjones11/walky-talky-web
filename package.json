@@ -1,7 +1,7 @@
 {
-  "name": "react-typescript-template",
+  "name": "walky-talky-web",
   "version": "1.0.0",
-  "description": "React JS and TypeScript template",
+  "description": "Walky Talky Web",
   "main": "index.js",
   "scripts": {
     "start:dev": "webpack-dev-server",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zackjones11/react-typescript-template.git"
+    "url": "git+https://github.com/zackjones11/walky-talky-web.git"
   },
   "author": "Zack Jones",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zackjones11/react-typescript-template/issues"
+    "url": "https://github.com/zackjones11/walky-talky-web/issues"
   },
-  "homepage": "https://github.com/zackjones11/react-typescript-template#readme",
+  "homepage": "https://github.com/zackjones11/walky-talky-web#readme",
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/plugin-proposal-object-rest-spread": "^7.10.4",

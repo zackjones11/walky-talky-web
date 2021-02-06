@@ -1,4 +1,4 @@
-# React + TypeScript Template
+# Walky Talky Web
 
 ## Development setup
 ### Install dependencies
@@ -31,12 +31,3 @@ npm run test:unit:watch
 ```
 npm run build
 ```
-
-## Included in template
-* React JS
-* TypeScript (Strict)
-* Styled Components
-* ESLint
-* Webpack
-* Jest + React Testing Library
-* Cypress

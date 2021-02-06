@@ -1,8 +1,5 @@
-import React from "react";
-import { Styled } from "./App.styles";
+import * as React from "react";
 
-const App: React.StatelessComponent<{}> = () => (
-  <Styled.Title>Hello World!</Styled.Title>
-);
+const App: React.FC = () => <div>Hello World!</div>;
 
 export default App;
