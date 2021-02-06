@@ -1,0 +1,71 @@
+{
+  "name": "react-typescript-template",
+  "version": "1.0.0",
+  "description": "React JS and TypeScript template",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "webpack-dev-server",
+    "start:cypress": "./node_modules/.bin/cypress open",
+    "build": "webpack",
+    "test:unit": "jest /src",
+    "test:unit:watch": "npm run test:unit -- --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zackjones11/react-typescript-template.git"
+  },
+  "author": "Zack Jones",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zackjones11/react-typescript-template/issues"
+  },
+  "homepage": "https://github.com/zackjones11/react-typescript-template#readme",
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@testing-library/jest-dom": "^5.11.1",
+    "@testing-library/react": "^10.4.7",
+    "@types/jest": "^26.0.7",
+    "@types/react": "^16.9.43",
+    "@types/react-dom": "^16.9.8",
+    "@types/styled-components": "^5.1.1",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
+    "babel-jest": "^26.1.0",
+    "babel-loader": "^8.1.0",
+    "cypress": "^4.11.0",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-cypress": "^2.11.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.3",
+    "html-webpack-plugin": "^4.3.0",
+    "jest": "^26.1.0",
+    "prettier": "^2.0.5",
+    "ts-loader": "^8.0.1",
+    "typescript": "^3.9.7",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.1.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
