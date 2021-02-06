@@ -23,6 +23,27 @@ const App: React.FC = () => {
     stream && setLocalStream(stream);
   };
 
+  const handleStartChat = () => {
+    setShouldStartChat(true);
+  };
+
+  const handleOffer = async (body: string) => {
+    await peerConnection.setRemoteDescription(JSON.parse(body));
+    const mediaStream = await getUserMedia();
+
+    handleStartChat();
+    mediaStream && setLocalStream(mediaStream);
+
+    const answer = await peerConnection.createAnswer();
+    await peerConnection.setLocalDescription(answer);
+
+    sendMessage({
+      type: "ANSWER",
+      clientId,
+      body: JSON.stringify(answer),
+    });
+  };
+
   const getUserMedia = async () => {
     try {
       if (!localStream) {
@@ -43,7 +64,7 @@ const App: React.FC = () => {
       return;
     }
 
-    const { type, clientId } = lastMessage;
+    const { type, clientId, body } = lastMessage;
 
     switch (type) {
       case "NEW_USER":
@@ -51,6 +72,14 @@ const App: React.FC = () => {
           throw new Error("No clientId from socket response");
         }
         handleNewClient(clientId);
+        break;
+
+      case "START_CHAT":
+        handleStartChat();
+        break;
+
+      case "OFFER":
+        handleOffer(body);
         break;
     }
   }, [lastMessage]);
