@@ -1,12 +1,65 @@
 import * as React from "react";
-import { useWebsocket } from "./hooks";
+import { useWebsocket, usePeerConnection } from "./hooks";
 
 const App: React.FC = () => {
+  const [clientId, setClientId] = React.useState<number>();
+  const [shouldStartChat, setShouldStartChat] = React.useState(false);
+  const [localStream, setLocalStream] = React.useState<MediaStream | null>(
+    null
+  );
+
   const { lastMessage, sendMessage } = useWebsocket();
+  const { peerConnection } = usePeerConnection({
+    shouldStartChat,
+    clientId,
+    localStream,
+    addRemoteStream: () => console.log("set remote"),
+    onSendMessage: sendMessage,
+  });
 
-  sendMessage({ type: "NEW_USER", clientId: 1, body: "" });
+  const handleNewClient = async (clientId: number) => {
+    setClientId(clientId);
+    const stream = await getUserMedia();
+    stream && setLocalStream(stream);
+  };
 
-  return <div>{lastMessage}</div>;
+  const getUserMedia = async () => {
+    try {
+      if (!localStream) {
+        const mediaStream = await navigator.mediaDevices.getUserMedia({
+          video: false,
+          audio: true,
+        });
+
+        return mediaStream;
+      }
+    } catch (error) {
+      console.error("getUserMedia Error: ", error);
+    }
+  };
+
+  React.useEffect(() => {
+    if (!lastMessage) {
+      return;
+    }
+
+    const { type, clientId } = lastMessage;
+
+    switch (type) {
+      case "NEW_USER":
+        if (!clientId) {
+          throw new Error("No clientId from socket response");
+        }
+        handleNewClient(clientId);
+        break;
+    }
+  }, [lastMessage]);
+
+  return (
+    <div>
+      {clientId} {lastMessage}
+    </div>
+  );
 };
 
 export default App;
