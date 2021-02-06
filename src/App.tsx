@@ -1,10 +1,14 @@
 import * as React from "react";
 import { useWebsocket, usePeerConnection } from "./hooks";
+import { Audio } from "./components";
 
 const App: React.FC = () => {
   const [clientId, setClientId] = React.useState<number>();
   const [shouldStartChat, setShouldStartChat] = React.useState(false);
   const [localStream, setLocalStream] = React.useState<MediaStream | null>(
+    null
+  );
+  const [remoteStream, setRemoteStream] = React.useState<MediaStream | null>(
     null
   );
 
@@ -13,7 +17,7 @@ const App: React.FC = () => {
     shouldStartChat,
     clientId,
     localStream,
-    addRemoteStream: () => console.log("set remote"),
+    addRemoteStream: setRemoteStream,
     onSendMessage: sendMessage,
   });
 
@@ -101,9 +105,11 @@ const App: React.FC = () => {
   }, [lastMessage]);
 
   return (
-    <div>
-      {clientId} {lastMessage}
-    </div>
+    <>
+      <p>clientID: {clientId}</p>
+      <Audio mediaStream={localStream} muted />
+      <Audio mediaStream={remoteStream} />
+    </>
   );
 };
 
