@@ -5,11 +5,12 @@ type MessageType =
   | "START_CHAT"
   | "OFFER"
   | "ANSWER"
-  | "ICE_CANDIDATE";
+  | "ICE_CANDIDATE"
+  | "DISCONNECTION";
 
 export type WebsocketResponse = {
   type: MessageType;
-  clientId?: number;
+  clientId?: string;
   body: string;
 };
 

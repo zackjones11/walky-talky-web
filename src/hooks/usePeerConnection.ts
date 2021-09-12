@@ -2,7 +2,7 @@ import * as React from "react";
 import { WebsocketResponse } from "./useWebsocket";
 
 interface IUsePeerConnectionProps {
-  clientId?: number;
+  clientId?: string;
   shouldStartChat: boolean;
   localStream: MediaStream | null;
   addRemoteStream: (stream: MediaStream) => void;

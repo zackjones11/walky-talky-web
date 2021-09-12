@@ -3,7 +3,7 @@ import { useWebsocket, usePeerConnection } from "./hooks";
 import { Audio } from "./components";
 
 const App: React.FC = () => {
-  const [clientId, setClientId] = React.useState<number>();
+  const [clientId, setClientId] = React.useState<string>();
   const [shouldStartChat, setShouldStartChat] = React.useState(false);
   const [localStream, setLocalStream] = React.useState<MediaStream | null>(
     null
@@ -21,7 +21,7 @@ const App: React.FC = () => {
     onSendMessage: sendMessage,
   });
 
-  const handleNewClient = async (clientId: number) => {
+  const handleNewClient = async (clientId: string) => {
     setClientId(clientId);
     const stream = await getUserMedia();
     stream && setLocalStream(stream);
@@ -101,8 +101,16 @@ const App: React.FC = () => {
       case "ICE_CANDIDATE":
         handleIceCandidate(body);
         break;
+
+      case "DISCONNECTION":
+        window.location.reload();
+        break;
     }
   }, [lastMessage]);
+
+  if (!remoteStream) {
+    return <p>2 connections needed</p>;
+  }
 
   return (
     <>
