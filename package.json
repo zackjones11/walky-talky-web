@@ -4,11 +4,10 @@
   "description": "Walky Talky Web",
   "main": "index.js",
   "scripts": {
-    "start:dev": "webpack serve",
-    "start:cypress": "./node_modules/.bin/cypress open",
+    "dev": "webpack serve",
     "build": "webpack",
-    "test:unit": "jest /src",
-    "test:unit:watch": "npm run test:unit -- --watchAll"
+    "test:cypress": "./node_modules/.bin/cypress open",
+    "test:unit": "jest /src"
   },
   "repository": {
     "type": "git",

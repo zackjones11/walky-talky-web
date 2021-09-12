@@ -9,22 +9,17 @@ npm install
 ## Commands
 ### Run dev server
 ```
-npm run start:dev
+npm run dev
 ```
 
 ### Run Cypress
 ```
-npm run start:cypress
+npm run test:cypress
 ```
 
 ### Run unit tests
 ```
 npm run test:unit
-```
-
-### Run unit tests (watch)
-```
-npm run test:unit:watch
 ```
 
 ### Run build
